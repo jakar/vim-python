@@ -1,2 +1,1 @@
-vim-python
-==========
+This contains slightly modified versions of VIM's python plugins.
