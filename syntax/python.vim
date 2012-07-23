@@ -131,6 +131,9 @@ if !exists("python_print_as_function") || python_print_as_function == 0
   syn keyword pythonStatement print
 endif
 
+" restrict built-in highlighting to function calls
+syn match   pythonFuncCall	"[a-zA-Z_][a-zA-Z0-9_]*(" display contains=pythonBuiltinFunc
+
 " Decorators (new in Python 2.4)
 syn match   pythonDecorator	"@" display nextgroup=pythonDottedName skipwhite
 syn match   pythonDottedName "[a-zA-Z_][a-zA-Z0-9_]*\(\.[a-zA-Z_][a-zA-Z0-9_]*\)*" display contained
@@ -250,28 +253,32 @@ syn match   pythonBinError	"\<0[bB][01]*[2-9]\d*[lL]\=\>" display
 if exists("python_highlight_builtin_objs") && python_highlight_builtin_objs != 0
   " Builtin objects and types
   syn keyword pythonBuiltinObj	True False Ellipsis None NotImplemented
-  syn keyword pythonBuiltinObj	__debug__ __doc__ __file__ __name__ __package__
+  " syn keyword pythonBuiltinObj	__debug__ __doc__ __file__ __name__ __package__
 endif
 
 if exists("python_highlight_builtin_funcs") && python_highlight_builtin_funcs != 0
   " Builtin functions
-  syn keyword pythonBuiltinFunc	__import__ abs all any apply
-  syn keyword pythonBuiltinFunc	basestring bin bool buffer bytearray bytes callable
-  syn keyword pythonBuiltinFunc	chr classmethod cmp coerce compile complex
-  syn keyword pythonBuiltinFunc	delattr dict dir divmod enumerate eval
-  syn keyword pythonBuiltinFunc	execfile file filter float format frozenset getattr
-  syn keyword pythonBuiltinFunc	globals hasattr hash help hex id
-  syn keyword pythonBuiltinFunc	input int intern isinstance
-  syn keyword pythonBuiltinFunc	issubclass iter len list locals long map max
-  syn keyword pythonBuiltinFunc	min next object oct open ord
-  syn keyword pythonBuiltinFunc	pow property range
-  syn keyword pythonBuiltinFunc	raw_input reduce reload repr
-  syn keyword pythonBuiltinFunc	reversed round set setattr
-  syn keyword pythonBuiltinFunc	slice sorted staticmethod str sum super tuple
-  syn keyword pythonBuiltinFunc	type unichr unicode vars xrange zip
+  syn keyword pythonBuiltinFunc	__import__ abs all any apply contained
+  syn keyword pythonBuiltinFunc	basestring bin buffer callable contained
+  syn keyword pythonBuiltinFunc	chr classmethod cmp coerce compile complex contained
+  syn keyword pythonBuiltinFunc	delattr dir divmod enumerate eval contained
+  syn keyword pythonBuiltinFunc	execfile file filter format frozenset getattr contained
+  syn keyword pythonBuiltinFunc	globals hasattr hash help hex id contained
+  syn keyword pythonBuiltinFunc	input intern isinstance contained
+  syn keyword pythonBuiltinFunc	issubclass iter len locals map max contained
+  syn keyword pythonBuiltinFunc	min next oct open ord contained
+  syn keyword pythonBuiltinFunc	pow property range contained
+  syn keyword pythonBuiltinFunc	raw_input reduce reload repr contained
+  syn keyword pythonBuiltinFunc	reversed round setattr contained
+  syn keyword pythonBuiltinFunc	slice sorted staticmethod sum super contained
+  syn keyword pythonBuiltinFunc	type unichr vars xrange zip contained
+
+  " Builtin types (also match when not called as function)
+  syn keyword pythonBuiltinFunc bool bytearray bytes dict float int
+  syn keyword pythonBuiltinFunc list long object set str tuple unicode
 
   if exists("python_print_as_function") && python_print_as_function != 0
-      syn keyword pythonBuiltinFunc	print
+      syn keyword pythonBuiltinFunc	print contained
   endif
 endif
 
