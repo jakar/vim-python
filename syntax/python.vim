@@ -275,7 +275,7 @@ if exists("python_highlight_builtin_funcs") && python_highlight_builtin_funcs !=
   syn keyword pythonBuiltinFunc	type unichr vars xrange zip contained
 
   " Builtin types (also match when not called as function)
-  syn keyword pythonBuiltinFunc bool bytearray bytes dict float int
+  syn keyword pythonBuiltinFunc basestring bool bytearray bytes dict float int
   syn keyword pythonBuiltinFunc list long object set str tuple unicode
 
   if exists("python_print_as_function") && python_print_as_function != 0
