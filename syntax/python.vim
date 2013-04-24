@@ -335,7 +335,7 @@ if version >= 508 || !exists("did_python_syn_inits")
   HiLink pythonOperator		Operator
 
   HiLink pythonDecorator	Define
-  HiLink pythonDottedName	Function
+  HiLink pythonDottedName	Define
   HiLink pythonDot          Normal
 
   HiLink pythonComment		Comment
